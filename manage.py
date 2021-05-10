@@ -1,4 +1,4 @@
-from flask_migrate import MigrateCommand
+from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
 
 from app import create_app
@@ -8,6 +8,9 @@ from app.models import db
 app = create_app()
 
 manager = Manager(app)
+migrate = Migrate(app, db)
+
+# adds the python manage.py db init, db migrate, db upgrade commands
 manager.add_command("db", MigrateCommand)
 
 

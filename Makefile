@@ -10,7 +10,7 @@ run_server:
 
 start_dev_db:
 	echo "creating docker postgres DB"
-	docker run -e POSTGRES_USER=testusr -e POSTGRES_PASSWORD=password -e POSTGRES_DB=testdb -d -p 5432:5432 -v flask-app-db:/var/lib/postgresql/data -d postgres:10
+	docker run -e POSTGRES_USER=testusr -e POSTGRES_PASSWORD=password -e POSTGRES_DB=testdb -d -p 5432:5432 -v flask-app-db:/var/lib/postgresql/data -d kartoza/postgis:13
 
 recreate_db:
 	./scripts/docker_destroy.sh
@@ -35,3 +35,15 @@ make compose_start:
 
 heroku_setup:
 	python manage.py recreate_db
+
+initialise_database:
+	# ./scripts/docker_destroy.sh
+	# start_dev_db
+	python etl_functions/etl.py	
+
+
+clean:
+	find . -name '*.pyo' -delete
+	find . -name '*.pyc' -delete
+	find . -name __pycache__ -delete
+	find . -name '*~' -delete	
