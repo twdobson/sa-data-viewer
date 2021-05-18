@@ -48,3 +48,24 @@ https://towardsdatascience.com/embed-multiple-dash-apps-in-flask-with-microsoft-
 https://dev.to/naderelshehabi/securing-plotly-dash-using-flask-login-4ia2
 https://github.com/facultyai/dash-bootstrap-components
 https://medium.com/@olegkomarov_77860/how-to-embed-a-dash-app-into-an-existing-flask-app-ea05d7a2210b
+
+
+
+import flask
+import dash
+import dash_core_components as dcc
+import dash_html_components as html
+
+app = dash.Dash(__name__)
+
+app.layout = html.Form([
+    dcc.Input(name='name'),
+    html.Button('Submit', type='submit')
+], action='/post', method='post')
+
+
+@app.server.route('/post', methods=['POST'])
+def on_post():
+    data = flask.request.form
+    print(data)
+    return flask.redirect('/')

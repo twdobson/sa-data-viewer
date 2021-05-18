@@ -1,7 +1,7 @@
 from geoalchemy2 import Geometry
 from sqlalchemy.ext.declarative import declarative_base
 
-from .base import db
+from app.extensions import db
 
 Base = declarative_base()
 

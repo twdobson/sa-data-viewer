@@ -36,7 +36,7 @@ make compose_start:
 heroku_setup:
 	python manage.py recreate_db
 
-initialise_database:
+initialise_database:	
 	# ./scripts/docker_destroy.sh
 	# start_dev_db
 	python etl_functions/etl.py	

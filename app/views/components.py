@@ -60,6 +60,29 @@ submenu_2 = [
     ),
 ]
 
+submenu_3 = [
+    html.Li(
+        # use Row and Col components to position the chevrons
+        dbc.Row(
+            [
+                dbc.Col("Other data sources"),
+                dbc.Col(
+                    html.I(className="fas fa-chevron-right mr-3"), width="auto"
+                ),
+            ],
+            className="my-1",
+        ),
+        id="submenu-3",
+    ),
+    # we use the Collapse component to hide and reveal the navigation links
+    dbc.Collapse(
+        [
+            dbc.NavLink("Google trends", href="/google_trends"),
+        ],
+        id="submenu-3-collapse",
+    ),
+]
+
 sidebar = html.Div(
     [
         html.H2("Nav", className="display-4"),
@@ -67,7 +90,7 @@ sidebar = html.Div(
         html.P(
             "Dashboard Views", className="lead"
         ),
-        dbc.Nav(submenu_1 + submenu_2, vertical=True),
+        dbc.Nav(submenu_1 + submenu_2 + submenu_3, vertical=True),
     ],
     style=SIDEBAR_STYLE,
 )
@@ -86,7 +109,7 @@ def init_callbacks(dash_app):
             return "open"
         return ""
 
-    for i in [1, 2]:
+    for i in [1, 2, 3]:
         dash_app.callback(
             Output(f"submenu-{i}-collapse", "is_open"),
             [Input(f"submenu-{i}", "n_clicks")],

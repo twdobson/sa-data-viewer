@@ -42,10 +42,3 @@ li.open .fa-chevron-right {
 .nav li {
     font-size: 18px;
 }
-
-.divBorder{
-    border: 10px solid black;
-}
-
-
-/* .VirtualizedSelectOption { white-space: nowrap; overflow: scroll; text-overflow: ellipsis; } */
